@@ -1,0 +1,45 @@
+<p-dialog header="Header" [(visible)]="displayAddEditModal" [modal]="true" [style]="{ width: '39vw' }" [draggable]="false" [resizable]="false" (onHide)="closeModal()">
+  <ng-template  pTemplate="header">
+      <span class="text-xl font-bold">{{modalType}}</span>
+  </ng-template>
+
+  <form [formGroup]="productForm" class="product-form">
+    <div class="relative-form-row">
+      <div class="form-row">
+        <div class="field">
+          <label class="block" for="title">Title</label>
+          <input type="text" id="title" pInputText formControlName="title"/>
+          <small class="p-error block" *ngIf="productForm.controls['title'].invalid && productForm.controls['title'].dirty">Field is required</small>
+        </div>
+        <div class="field">
+          <label class="block" for="price">Price</label>
+        <p-inputNumber inputId="integeronly" id="price" formControlName="price" class="block"></p-inputNumber>
+        <small class="p-error block" *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].dirty">Field is required</small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label class="block" for="image">Image</label>
+        <input id="image" pInputTextarea formControlName="image">
+        <small class="p-error block" *ngIf="productForm.controls['image'].invalid && productForm.controls['image'].dirty">Field is required</small>
+        </div>
+        <div class="field">
+          <label class="block" for="category">Category</label>
+        <input id="category" pInputTextarea formControlName="category">
+          <small class="p-error block" *ngIf="productForm.controls['category'].invalid && productForm.controls['category'].dirty">Field is required</small>
+        </div>
+      </div>
+    </div>
+    <div class="field input-div-desc">
+      <label class="block input-desc" for="description">Description</label>
+    <textarea rows="3" cols="30" id="description" pInputTextarea formControlName="description"></textarea>
+    <small class="p-error block" *ngIf="productForm.controls['description'].invalid && productForm.controls['description'].dirty">Field is required</small>
+    </div>
+
+  </form>
+
+  <ng-template pTemplate="footer">
+      <p-button (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+      <p-button (click)="addEditProduct()" label="{{modalType}}"  [disabled]="productForm.invalid"  styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,71 @@
+<section id="table" >
+  <div class="devider-info-table-modal row">
+    <div class="card" [ngStyle]="{'width': !visibility? '80' : '100%'}">
+      <div class="control-form">
+        <div class="right-control">
+          <p-button  severity="info" label="Add Product" (click)="showAddEditModal()"></p-button>
+          <p-button  severity="danger" label="Delete Selected Product" (click)="deleteProducts(selectedDeleteProduct)"></p-button>
+          <p-button  severity="info" label="Buy Products" (click)="buyProducts(selectedDeleteProduct)"></p-button>
+        </div>
+        <app-filter-product (selectCategory)="getProdcutByCategory($event)"></app-filter-product>
+      </div>
+      <div class="row">
+        <p-table [value]="products" [paginator]="true" [rows]="6" >
+          <ng-template pTemplate="header">
+              <tr [ngStyle]="{'font-size': !visibility? '12px' : '15px'}">
+                  <th>Check</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                  <th>Action</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+              <tr [ngStyle]="{'font-size': !visibility? '13px' : '16px'}">
+                <td>
+                <p-checkbox name="group" [value]="product.id" [(ngModel)]="selectedDeleteProduct" [inputId]="product.id.key"></p-checkbox>
+                </td>
+                  <td class="crud-title" [ngStyle]="{'width': !visibility? '300px' : 'width: 900px'}"><label [for]="product.id.key">{{ product.title}}</label></td>
+                  <td>{{ product.price }}</td>
+                  <td>{{ product.category }}</td>
+                  <td class="img-product"><img src="{{product.image}}" width="30px"></td>
+                  <td>
+                    <button style="border: none; border-radius: 5px !important; background-color: #1f5ec3; color: white; cursor: pointer; margin-right: 7px; padding: 5px;  " (click)="showAddEditModal(product)">
+                      <i class="pi pi-file-edit"></i>
+                    </button>
+                    <button style="border: none; border-radius: 5px !important; background-color: red; color: white; cursor: pointer; padding: 5px;  " (click)="deleteProduct(product, $event)">
+                      <p-confirmPopup></p-confirmPopup>
+                      <i class="pi pi-trash"></i>
+                    </button>
+                    <button style="border: none; border-radius: 5px !important; background-color: #0c6a01; color: white; cursor: pointer; margin-left: 7px; padding: 5px;"  (click)="showDialog(product)">
+                      <i class="pi pi-eye"></i>
+                    </button>
+                  </td>
+              </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <div class="card-info"  *ngIf="!visibility" >
+      <app-info-product
+      [showInfoModal]="visibility"
+      [getInfoProduct]="selectedInfoProduct"
+      (closeInfoModal)="hideModalInfo($event)"
+      >
+    </app-info-product>
+    </div>
+  </div>
+</section>
+
+<app-add-edit-product
+[displayAddEditModal]="displayAddEditModal"
+[selectedProduct]="selectedProduct"
+(clickClose)="hideAddModal($event)"
+(clickAddEdit)="saveOrUpdateProductToList($event)" >
+</app-add-edit-product>
+
+
+
+
+

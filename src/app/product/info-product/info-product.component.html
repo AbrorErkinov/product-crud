@@ -1,0 +1,19 @@
+
+<ng-container class="info-card-section">
+  <div class="hero-info">
+    <div class="header-info-section">
+      <h3 class="header-info">Information about product</h3>
+      <p-button [text]="true" [rounded]="true" icon="pi pi-times"  severity="danger" (click)="hideInfoModal()"></p-button>
+    </div>
+      <div class="info-card-content" *ngIf="getInfoProduct">
+        <div class="img-info">
+          <img src="{{ getInfoProduct.image }}" alt="" height="100%" width="100%" />
+        </div>
+        <ul class="text-info">
+          <li><span>Name:</span> {{ getInfoProduct.title }}</li>
+          <li><span>Price:</span> {{ getInfoProduct.price }}$</li>
+          <li><span>Category:</span> {{ getInfoProduct.category }}</li>
+        </ul>
+      </div>
+  </div>
+</ng-container>

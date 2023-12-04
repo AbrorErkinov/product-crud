@@ -1,0 +1,41 @@
+.navbar{
+  background: #f8f9fa;;
+  border: 1px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.container-nav{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar-brand{
+  font-size: 19px;
+  font-weight: 600;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:active{
+  color: black;
+}
+
+.nav-link{
+  font-weight: 500;
+}
+
+
+
+ul{
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+}
+
